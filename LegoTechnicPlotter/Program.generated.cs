@@ -8,34 +8,31 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LegoTechnicPlotter
-{
+namespace LegoTechnicPlotter {
     using Gadgeteer;
     using GTM = Gadgeteer.Modules;
-
-
-    public partial class Program : Gadgeteer.Program
-    {
-
+    
+    
+    public partial class Program : Gadgeteer.Program {
+        
         /// <summary>The Display_T35 module using sockets 14, 13, 12 and 10 of the mainboard.</summary>
         private Gadgeteer.Modules.GHIElectronics.Display_T35 Display_T35;
-
+        
+        /// <summary>The LED7R module using socket 5 of the mainboard.</summary>
+        private Gadgeteer.Modules.GHIElectronics.LED7R Led7R;
+        
         /// <summary>This property provides access to the Mainboard API. This is normally not necessary for an end user program.</summary>
-        protected new static GHIElectronics.Gadgeteer.FEZSpider Mainboard
-        {
-            get
-            {
+        protected new static GHIElectronics.Gadgeteer.FEZSpider Mainboard {
+            get {
                 return ((GHIElectronics.Gadgeteer.FEZSpider)(Gadgeteer.Program.Mainboard));
             }
-            set
-            {
+            set {
                 Gadgeteer.Program.Mainboard = value;
             }
         }
-
+        
         /// <summary>This method runs automatically when the device is powered, and calls ProgramStarted.</summary>
-        public static void Main()
-        {
+        public static void Main() {
             // Important to initialize the Mainboard first
             Program.Mainboard = new GHIElectronics.Gadgeteer.FEZSpider();
             Program p = new Program();
@@ -44,10 +41,10 @@ namespace LegoTechnicPlotter
             // Starts Dispatcher
             p.Run();
         }
-
-        private void InitializeModules()
-        {
+        
+        private void InitializeModules() {
             this.Display_T35 = new GTM.GHIElectronics.Display_T35(14, 13, 12, 10);
+            this.Led7R = new GTM.GHIElectronics.LED7R(5);
         }
     }
 }

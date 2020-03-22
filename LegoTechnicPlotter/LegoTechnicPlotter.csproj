@@ -39,6 +39,9 @@
   <!-- Everything below here is custom to .NET MF / Gadgeteer template-->
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="Controls\InfoBar.cs" />
+    <Compile Include="Controls\PathPlotterBuilder.cs" />
+    <Compile Include="Controls\SquareButton.cs" />
     <Compile Include="Program.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -51,7 +54,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Styles\SquareBlueColors.cs" />
     <Compile Include="Views\Base\BaseView.cs" />
+    <Compile Include="Views\Main\MainView.cs" />
     <Compile Include="Views\Menu\MenuView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +65,9 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="GTM.GHIElectronics.Display_T35, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="GTM.GHIElectronics.LED7R, Version=4.2.110.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Microsoft.SPOT.Graphics" />

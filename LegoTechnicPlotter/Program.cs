@@ -13,50 +13,53 @@ using GT = Gadgeteer;
 using GTM = Gadgeteer.Modules;
 using Gadgeteer.Modules.GHIElectronics;
 using Microsoft.SPOT.Hardware;
+using LegoTechnicPlotter.Controls;
+using LegoTechnicPlotter.Views.Base;
+using LegoTechnicPlotter.Views.Menu;
 
 namespace LegoTechnicPlotter
 {
     public partial class Program
     {
-        Text text;
+        private DispatcherTimer _timer = new DispatcherTimer();
+        private bool _led0, _led1, _led2, _led3, _led4, _led5, _led6;
+
+        private ArrayList _views = new ArrayList();
 
         void ProgramStarted()
         {
-            CreateButton();
-        }
+            this._timer.Interval = TimeSpan.FromTicks(TimeSpan.TicksPerSecond * 2);
+            this._timer.Tick += _timer_Tick;
+            this._timer.Start();
 
-        private void CreateButton()
-        {
             var main = this.Display_T35.WPFWindow;
-            var canvas = new Panel();
-            canvas.HorizontalAlignment = HorizontalAlignment.Left;
-            canvas.SetMargin(4);
-            canvas.SetMargin(5, 5, 0, 0);
 
-            Rectangle rec = new Rectangle(200, 100);
-            rec.HorizontalAlignment = HorizontalAlignment.Left;
-            rec.VerticalAlignment = VerticalAlignment.Top;
-            rec.Fill = new SolidColorBrush(Colors.Green);
-            canvas.Children.Add(rec);
+            var mainPanel = new Panel();
 
-            Font baseFont = Resources.GetFont(Resources.FontResources.NinaB);
-            text = new Text(baseFont, "Hello World!");
-            text.ForeColor = Colors.Black;
-            text.HorizontalAlignment = HorizontalAlignment.Left;
-            text.VerticalAlignment = VerticalAlignment.Top;
-            text.SetMargin(10, 10, 0, 0);
-            text.Height = 20;
-            text.Visibility = Visibility.Collapsed;
-            canvas.Children.Add(text);
+            MenuView menu = new MenuView(mainPanel);
+            this._views.Add(menu);
 
-            main.Child = canvas;
-
-            main.TouchDown += new Microsoft.SPOT.Input.TouchEventHandler(main_TouchDown);
+            main.Child = mainPanel;
         }
 
-        void main_TouchDown(object sender, Microsoft.SPOT.Input.TouchEventArgs e)
+        /// <summary>
+        /// Show the activity
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void _timer_Tick(object sender, EventArgs e)
         {
-            text.Visibility = Visibility.Visible;
+            if(this._led0){ this.Led7R.TurnLightOn(0);} else { this.Led7R.TurnLightOff(0);}
+            if (this._led1) { this.Led7R.TurnLightOn(1); } else { this.Led7R.TurnLightOff(1); }
+            if (this._led2) { this.Led7R.TurnLightOn(2); } else { this.Led7R.TurnLightOff(2); }
+            if (this._led3) { this.Led7R.TurnLightOn(3); } else { this.Led7R.TurnLightOff(3); }
+            if (this._led4) { this.Led7R.TurnLightOn(4); } else { this.Led7R.TurnLightOff(4); }
+            if (this._led5) { this.Led7R.TurnLightOn(5); } else { this.Led7R.TurnLightOff(5); }
+            if (this._led6) { this.Led7R.TurnLightOn(6); } else { this.Led7R.TurnLightOff(6); }
+
+            this._led0 = !this._led0;
+            this._led1 = !this._led1 && !this._led0;
+            this._led2 = !this._led0 && !this._led1 && !this._led2;
         }
     }
 }

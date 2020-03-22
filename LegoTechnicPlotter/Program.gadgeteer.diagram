@@ -84,7 +84,7 @@
         <socketShapeMoniker Id="474a3ce3-4177-4513-a8b4-ec6ecd89f1cf" />
       </nodes>
     </socketConnector>
-    <socketConnector Id="c35d26d9-6506-4e02-882b-8963d6ec3d59" edgePoints="[(4.11358267849573 : 6.625); (7.06166666666667 : 6.625 : JumpStart); (7.22833333333333 : 6.625 : JumpEnd); (7.325 : 6.625); (7.325 : 5.21358267849573)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <socketConnector Id="c35d26d9-6506-4e02-882b-8963d6ec3d59" edgePoints="[(4.11358267849573 : 6.625); (7.325 : 6.625); (7.325 : 5.21358267849573)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <socketUseReferencesSocketMoniker Id="fed34923-1e26-4de8-85b4-04cb1ba25410" />
       <nodes>
         <socketUseShapeMoniker Id="be36dffd-134c-4098-b88c-aee8a1cf3bfc" />
@@ -96,6 +96,22 @@
       <nodes>
         <socketUseShapeMoniker Id="829a92a3-20a1-45df-9780-dce22d22b826" />
         <socketShapeMoniker Id="c972ee81-4a9e-4bc3-807a-01f6e7f6d596" />
+      </nodes>
+    </socketConnector>
+    <moduleShape Id="08c2ea18-3e4c-4370-8979-7ef54e3c079f" absoluteBounds="4.82, 1.4000000000000001, 0.66141732283464572, 0.8582677165354331">
+      <moduleMoniker Id="255c7159-9d69-431b-a103-b39a0b917d78" />
+      <relativeChildShapes />
+      <nestedChildShapes>
+        <socketUseShape Id="d99695b2-9402-4237-8111-a28ac14c0457" absoluteBounds="5.0200000000000005, 1.9600000000000002, 0.25, 0.25">
+          <socketUseMoniker Id="1f826dc8-3dee-4268-85a2-7b6727047a70" />
+        </socketUseShape>
+      </nestedChildShapes>
+    </moduleShape>
+    <socketConnector Id="a31232fd-b8e7-4082-b310-62e466c81ad7" edgePoints="[(5.38122047598862 : 2.085); (6.365 : 2.085); (6.365 : 3.78877952401138)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <socketUseReferencesSocketMoniker Id="0620207f-e899-430c-8722-1361b5646a3b" />
+      <nodes>
+        <socketUseShapeMoniker Id="d99695b2-9402-4237-8111-a28ac14c0457" />
+        <socketShapeMoniker Id="9f752100-606b-4b43-a73f-e47fde62cb2e" />
       </nodes>
     </socketConnector>
   </nestedChildShapes>
