@@ -16,50 +16,69 @@ using Microsoft.SPOT.Hardware;
 using LegoTechnicPlotter.Controls;
 using LegoTechnicPlotter.Views.Base;
 using LegoTechnicPlotter.Views.Menu;
+using LegoTechnicPlotter.Views.PhotoResult;
 
 namespace LegoTechnicPlotter
 {
     public partial class Program
     {
-        private DispatcherTimer _timer = new DispatcherTimer();
-        private bool _led0, _led1, _led2, _led3, _led4, _led5, _led6;
-
-        private ArrayList _views = new ArrayList();
+        private MenuView _menu;
+        private PhotoResultView _photoResult;
 
         void ProgramStarted()
         {
-            this._timer.Interval = TimeSpan.FromTicks(TimeSpan.TicksPerSecond * 2);
-            this._timer.Tick += _timer_Tick;
-            this._timer.Start();
+            this.InitialiseViews();
 
+            this.Camera.PictureCaptured += Camera_PictureCaptured;
+        }
+
+        private void InitialiseViews()
+        {
             var main = this.Display_T35.WPFWindow;
 
             var mainPanel = new Panel();
 
-            MenuView menu = new MenuView(mainPanel);
-            this._views.Add(menu);
+            // Menu content.
+            this._menu = new MenuView(mainPanel);
+            this._menu.CreatePhoto.ButtonPressedEvent += CreatePhoto_ButtonPressedEvent;
+
+            this._photoResult = new PhotoResultView(mainPanel);
+            this._photoResult.Back.ButtonPressedEvent += Back_ButtonPressedEvent;
+            this._photoResult.Hide();
 
             main.Child = mainPanel;
         }
 
+
+
+        private void Back_ButtonPressedEvent()
+        {
+            this._photoResult.Hide();
+            this._menu.Show();
+        }
+
+        private void CreatePhoto_ButtonPressedEvent()
+        {
+             if (!this.Camera.CameraReady)
+            {
+
+            }
+
+            this._menu.Hide();
+            this._photoResult.Show();
+
+            this.Camera.TakePicture();
+        }
+
         /// <summary>
-        /// Show the activity
+        /// Execute if the pictured was captured.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void _timer_Tick(object sender, EventArgs e)
+        /// <param name="picture"></param>
+        private void Camera_PictureCaptured(Camera sender, GT.Picture picture)
         {
-            if(this._led0){ this.Led7R.TurnLightOn(0);} else { this.Led7R.TurnLightOff(0);}
-            if (this._led1) { this.Led7R.TurnLightOn(1); } else { this.Led7R.TurnLightOff(1); }
-            if (this._led2) { this.Led7R.TurnLightOn(2); } else { this.Led7R.TurnLightOff(2); }
-            if (this._led3) { this.Led7R.TurnLightOn(3); } else { this.Led7R.TurnLightOff(3); }
-            if (this._led4) { this.Led7R.TurnLightOn(4); } else { this.Led7R.TurnLightOff(4); }
-            if (this._led5) { this.Led7R.TurnLightOn(5); } else { this.Led7R.TurnLightOff(5); }
-            if (this._led6) { this.Led7R.TurnLightOn(6); } else { this.Led7R.TurnLightOff(6); }
-
-            this._led0 = !this._led0;
-            this._led1 = !this._led1 && !this._led0;
-            this._led2 = !this._led0 && !this._led1 && !this._led2;
+            Debug.Print("Was captured");
+            this._photoResult.LoadPicture(picture);
         }
     }
 }

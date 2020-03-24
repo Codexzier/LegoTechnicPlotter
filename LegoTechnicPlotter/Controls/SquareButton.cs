@@ -4,13 +4,14 @@ using Microsoft.SPOT.Presentation;
 using Microsoft.SPOT.Presentation.Media;
 using Microsoft.SPOT.Presentation.Controls;
 using LegoTechnicPlotter.Styles;
+using LegoTechnicPlotter.Views.Base;
 
 namespace LegoTechnicPlotter.Controls
 {
     /// <summary>
     /// Create instance to create a sqare button with touch effect.
     /// </summary>
-    public class SquareButton : Canvas
+    public class SquareButton : Canvas, IElementControl
     {
         private SquareButton _buttonPressEffect;
         private bool _isEffect = false;
@@ -25,13 +26,13 @@ namespace LegoTechnicPlotter.Controls
         /// <param name="left">Left distance.</param>
         /// <param name="top">Top distance.</param>
         /// <param name="text">Set text for the button.</param>
-        public SquareButton(Panel content, int left, int top, string text)
+        public SquareButton(BaseView view, int left, int top, string text)
             : this(left, top, text)
         {
             this.CreateEffects(left, top, text);
 
-            content.Children.Add(this);
-            content.Children.Add(this._buttonPressEffect);
+            view.Add(this);
+            view.Add(this._buttonPressEffect);
         }
 
         /// <summary>
@@ -148,6 +149,17 @@ namespace LegoTechnicPlotter.Controls
             this._timer.Stop();
 
             this._buttonPressEffect.Visibility = Visibility.Collapsed;
+        }
+
+        public bool IsSubElement { get { return this._isEffect; } }
+
+        internal void MoveToLast(BaseView view)
+        {
+            view.Remove(this);
+            view.Remove(this._buttonPressEffect);
+
+            view.Add(this);
+            view.Add(this._buttonPressEffect);
         }
     }
 }

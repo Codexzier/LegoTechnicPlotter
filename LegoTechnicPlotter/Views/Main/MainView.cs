@@ -7,7 +7,8 @@ namespace LegoTechnicPlotter.Views.Main
 {
     public class MainView : BaseView
     {
-        public MainView(Panel content) : base(content)
+        public MainView(Panel content) 
+            : base(content)
         {
         }
     }

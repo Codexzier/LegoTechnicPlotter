@@ -5,6 +5,7 @@ using Microsoft.SPOT.Presentation.Shapes;
 using Microsoft.SPOT.Presentation;
 using Microsoft.SPOT.Presentation.Media;
 using LegoTechnicPlotter.Styles;
+using LegoTechnicPlotter.Views.Base;
 
 namespace LegoTechnicPlotter.Controls
 {
@@ -14,30 +15,30 @@ namespace LegoTechnicPlotter.Controls
     /// </summary>
     public class InfoBar
     {
-        public InfoBar(Panel content)
+        public InfoBar(BaseView view)
         {
-            this.CreateGroundTop(content);
-            this.CreateGroundBottom(content);
+            this.CreateGroundTop(view);
+            this.CreateGroundBottom(view);
         }
 
-        private void CreateGroundTop(Panel content)
+        private void CreateGroundTop(BaseView view)
         {
             Rectangle rec = new Rectangle(320, 15);
             rec.HorizontalAlignment = HorizontalAlignment.Stretch;
             rec.VerticalAlignment = VerticalAlignment.Top;
             rec.Fill = new SolidColorBrush(SquareBlueColors.LightBlue);
 
-            content.Children.Add(rec);
+            view.Add(rec);
         }
 
-        private void CreateGroundBottom(Panel content)
+        private void CreateGroundBottom(BaseView view)
         {
             Rectangle rec = new Rectangle(320, 5);
             rec.HorizontalAlignment = HorizontalAlignment.Stretch;
             rec.VerticalAlignment = VerticalAlignment.Bottom;
             rec.Fill = new SolidColorBrush(SquareBlueColors.LightBlue);
 
-            content.Children.Add(rec);
+            view.Add(rec);
         }
     }
 }
