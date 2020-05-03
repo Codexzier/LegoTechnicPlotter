@@ -24,6 +24,7 @@ namespace LegoTechnicPlotter
 {
     public partial class Program
     {
+        private PlotterSettings _settings;
         private MenuView _menu;
         private PhotoResultView _photoResult;
 
@@ -32,6 +33,8 @@ namespace LegoTechnicPlotter
 
         void ProgramStarted()
         {
+            this._settings = PlotterSettings.GetInstance(SdCard);
+
             this.InitialiseViews();
 
             this.Camera.PictureCaptured += Camera_PictureCaptured;

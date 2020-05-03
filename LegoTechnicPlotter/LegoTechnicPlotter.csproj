@@ -42,6 +42,8 @@
     <Compile Include="Components\DrawPointItem.cs" />
     <Compile Include="Components\Move.cs" />
     <Compile Include="Components\PlotterController.cs" />
+    <Compile Include="Components\PlotterSettings.cs" />
+    <Compile Include="Components\SettingItem.cs" />
     <Compile Include="Controls\IElementControl.cs" />
     <Compile Include="Controls\InfoBar.cs" />
     <Compile Include="Controls\PathPlotterBuilder.cs" />
