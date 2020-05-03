@@ -36,17 +36,19 @@ namespace LegoTechnicPlotter.Views.Menu
         {
             base.InitializeComponent();
 
-            this._buttonCreatePhoto = new SquareButton(this, 20, 30, "Create photo");
-            this._buttonLoadPhoto = new SquareButton(this, 20, 80, "Load photo");
-            this._buttonPreviewPrint = new SquareButton(this, 20, 130, "Preview print");
-            this._buttonPrint = new SquareButton(this, 20, 180, "Print");
+            this._buttonCreatePhoto = new SquareButton(this, SquareButtonPosition.Line_1, "Create photo");
+            this._buttonLoadPhoto = new SquareButton(this, SquareButtonPosition.Line_2, "Load photo");
+            this._buttonPreviewPrint = new SquareButton(this, SquareButtonPosition.Line_3, "Preview print");
+            this._buttonPrint = new SquareButton(this, SquareButtonPosition.Line_4, "Print");
 
             this._infobar = new InfoBar(this);
         }
 
         public SquareButton CreatePhoto { get { return this._buttonCreatePhoto; } }
 
+        public SquareButton LoadPhoto { get { return this._buttonLoadPhoto; } }
 
+        public SquareButton PreviewPrint { get { return this._buttonPreviewPrint; } }
 
         public SquareButton Print { get { return this._buttonPrint; } }
 

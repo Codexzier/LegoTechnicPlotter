@@ -1,8 +1,9 @@
 using System;
 using Microsoft.SPOT;
 using Gadgeteer.Interfaces;
+using System.Collections;
 
-namespace LegoTechnicPlotter.Components
+namespace LegoTechnicPlotter.Components.Plotter
 {
     public class PlotterController
     {
@@ -16,7 +17,8 @@ namespace LegoTechnicPlotter.Components
         private DigitalOutput _outputP6;
 
         private int _countDown = 0;
-        private Move _moveState;
+        private MoveState _moveState;
+        private ArrayList _sequenz;
 
         private PlotterController(Gadgeteer.Modules.GHIElectronics.Extender extender)
         {
@@ -55,21 +57,42 @@ namespace LegoTechnicPlotter.Components
                 this._countDown -= 100;
             }
 
-            if(this._moveState == Components.Move.Left)
+            switch (this._moveState)
             {
-                this._outputP3.Write(true);
+                case MoveState.Stand:
+                    this.Reset();
+                    break;
+                case MoveState.Left:
+                    this._outputP4.Write(true);
+                    break;
+                case MoveState.Right:
+                    this._outputP3.Write(true);
+                    break;
+                case MoveState.Up:
+                    this._outputP5.Write(true);
+                    break;
+                case MoveState.Down:
+                    this._outputP6.Write(true);
+                    break;
+                default:
+                    break;
             }
         }
 
         public delegate void MoveStoppedEventHandler() ;
         public event MoveStoppedEventHandler MoveStoppedEvent;
 
-        internal void Move(int milliSeconds, Move move)
+        internal void RunSequenz(ArrayList sequenz)
         {
-            this._countDown = milliSeconds;
-            this._moveState = move;
+            this._sequenz = sequenz;
             this._timer.Start();
         }
+
+        //private void Move(int milliSeconds, MoveState move)
+        //{
+        //    this._countDown = milliSeconds;
+        //    this._moveState = move;
+        //}
 
         internal void Reset()
         {

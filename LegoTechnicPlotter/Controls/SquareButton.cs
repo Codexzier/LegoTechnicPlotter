@@ -11,13 +11,37 @@ namespace LegoTechnicPlotter.Controls
     /// <summary>
     /// Create instance to create a sqare button with touch effect.
     /// </summary>
-    public class SquareButton : Canvas, IElementControl
+    public class SquareButton : BaseButton //Canvas, IElementControl
     {
         private SquareButton _buttonPressEffect;
         private bool _isEffect = false;
         private readonly DispatcherTimer _timer = new DispatcherTimer();
         private Pen _pen = new Pen(ColorUtility.ColorFromRGB(120, 136, 150), 1);
         private string _text;
+
+        public SquareButton(BaseView view, SquareButtonPosition position, string text)
+            : this(view, 20, SquareButton.GetTopDistance(position), text)
+        {
+        }
+
+        private static int GetTopDistance(SquareButtonPosition position)
+        {
+            switch (position)
+            {
+                case SquareButtonPosition.Line_1:
+                    return 30;
+                case SquareButtonPosition.Line_2:
+                    return 80;
+                case SquareButtonPosition.Line_3:
+                    return 130;
+                case SquareButtonPosition.Line_4:
+                    return 180;
+                default:
+                    break;
+            }
+
+            return 0;
+        }
 
         /// <summary>
         /// Create instance to create a sqare button with touch effect.

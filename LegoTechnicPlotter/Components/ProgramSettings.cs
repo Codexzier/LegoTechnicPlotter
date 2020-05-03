@@ -6,24 +6,24 @@ using System.Collections;
 
 namespace LegoTechnicPlotter.Components
 {
-    public class PlotterSettings
+    public class ProgramSettings
     {
-        private static PlotterSettings _instance;
+        private static ProgramSettings _instance;
         private Gadgeteer.Modules.GHIElectronics.SDCard _sdCard;
 
         private string _filename = "plottersettings.ini";
 
 
-        private PlotterSettings(Gadgeteer.Modules.GHIElectronics.SDCard sdCard)
+        private ProgramSettings(Gadgeteer.Modules.GHIElectronics.SDCard sdCard)
         {
             this._sdCard = sdCard;
         }
 
-        public static PlotterSettings GetInstance(Gadgeteer.Modules.GHIElectronics.SDCard sdCard)
+        public static ProgramSettings GetInstance(Gadgeteer.Modules.GHIElectronics.SDCard sdCard)
         {
             if (_instance == null)
             {
-                _instance = new PlotterSettings(sdCard);
+                _instance = new ProgramSettings(sdCard);
             }
 
             return _instance;

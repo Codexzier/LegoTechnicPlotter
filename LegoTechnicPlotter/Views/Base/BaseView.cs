@@ -30,7 +30,7 @@ namespace LegoTechnicPlotter.Views.Base
         {
             this.SetBackground();
 
-            this._buttonBack = new SquareButton(this, 20, 180, "Back");
+            this._buttonBack = new SquareButton(this, SquareButtonPosition.Line_4, "Back");
         }
 
         protected void SetBackground()

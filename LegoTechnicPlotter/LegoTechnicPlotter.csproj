@@ -39,15 +39,19 @@
   <!-- Everything below here is custom to .NET MF / Gadgeteer template-->
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
-    <Compile Include="Components\DrawPointItem.cs" />
-    <Compile Include="Components\Move.cs" />
-    <Compile Include="Components\PlotterController.cs" />
-    <Compile Include="Components\PlotterSettings.cs" />
+    <Compile Include="Components\ImageToGraph\DrawPointItem.cs" />
+    <Compile Include="Components\Plotter\MovePointItem.cs" />
+    <Compile Include="Components\Plotter\MoveState.cs" />
+    <Compile Include="Components\Plotter\PlotterController.cs" />
+    <Compile Include="Components\ProgramSettings.cs" />
     <Compile Include="Components\SettingItem.cs" />
+    <Compile Include="Controls\BaseButton.cs" />
+    <Compile Include="Controls\IconButton.cs" />
     <Compile Include="Controls\IElementControl.cs" />
     <Compile Include="Controls\InfoBar.cs" />
     <Compile Include="Controls\PathPlotterBuilder.cs" />
     <Compile Include="Controls\SquareButton.cs" />
+    <Compile Include="Controls\SquareButtonPosition.cs" />
     <Compile Include="Controls\SquarePhoto.cs" />
     <Compile Include="Program.generated.cs">
       <AutoGen>True</AutoGen>
@@ -63,10 +67,12 @@
     </Compile>
     <Compile Include="Styles\SquareBlueColors.cs" />
     <Compile Include="Views\Base\BaseView.cs" />
+    <Compile Include="Views\CreatePhoto\CreatePhotoView.cs" />
     <Compile Include="Views\LoadPhoto\LoadPhotoView.cs" />
     <Compile Include="Views\Main\MainView.cs" />
     <Compile Include="Views\Menu\MenuView.cs" />
-    <Compile Include="Views\PhotoResult\PhotoResultView.cs" />
+    <Compile Include="Views\CreatePhoto\PhotoResultView.cs" />
+    <Compile Include="Views\PreviewPrint\PreviewPrintView.cs" />
     <Compile Include="Views\Print\CalibrateView.cs" />
     <Compile Include="Views\Print\PrintView.cs" />
   </ItemGroup>
@@ -119,7 +125,5 @@
     <None Include="Resources\NinaB.tinyfnt" />
     <None Include="Resources\small.tinyfnt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

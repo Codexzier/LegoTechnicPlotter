@@ -1,9 +1,9 @@
 using System;
 using Microsoft.SPOT;
 
-namespace LegoTechnicPlotter.Components
+namespace LegoTechnicPlotter.Components.Plotter
 {
-    public enum Move
+    public enum MoveState
     {
         Stand,
         Left,

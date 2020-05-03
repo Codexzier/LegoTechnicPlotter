@@ -5,7 +5,7 @@ using Microsoft.SPOT.Presentation.Controls;
 using Gadgeteer;
 using LegoTechnicPlotter.Controls;
 
-namespace LegoTechnicPlotter.Views.PhotoResult
+namespace LegoTechnicPlotter.Views.CreatePhoto
 {
     public class PhotoResultView : BaseView
     {

@@ -1,7 +1,7 @@
 using System;
 using Microsoft.SPOT;
 
-namespace LegoTechnicPlotter.Components
+namespace LegoTechnicPlotter.Components.ImageToGraph
 {
     public class DrawPointItem
     {
