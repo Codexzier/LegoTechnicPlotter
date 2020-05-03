@@ -47,6 +47,10 @@ namespace LegoTechnicPlotter.Views.Menu
         public SquareButton CreatePhoto { get { return this._buttonCreatePhoto; } }
 
 
+
+        public SquareButton Print { get { return this._buttonPrint; } }
+
+
         //private void GetText(Panel canvas)
         //{
         //    Font baseFont = Resources.GetFont(Resources.FontResources.NinaB);

@@ -24,6 +24,9 @@ namespace LegoTechnicPlotter {
         /// <summary>The SD Card module using socket 5 of the mainboard.</summary>
         private Gadgeteer.Modules.GHIElectronics.SDCard SdCard;
         
+        /// <summary>The Extender module using socket 6 of the mainboard.</summary>
+        private Gadgeteer.Modules.GHIElectronics.Extender extender;
+        
         /// <summary>This property provides access to the Mainboard API. This is normally not necessary for an end user program.</summary>
         protected new static GHIElectronics.Gadgeteer.FEZSpider Mainboard {
             get {
@@ -49,6 +52,7 @@ namespace LegoTechnicPlotter {
             this.Display_T35 = new GTM.GHIElectronics.Display_T35(14, 13, 12, 10);
             this.Camera = new GTM.GHIElectronics.Camera(3);
             this.SdCard = new GTM.GHIElectronics.SDCard(5);
+            this.extender = new GTM.GHIElectronics.Extender(6);
         }
     }
 }

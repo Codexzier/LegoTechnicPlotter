@@ -15,17 +15,22 @@ namespace LegoTechnicPlotter.Views.Base
     /// </summary>
     public abstract class BaseView
     {
+        private SquareButton _buttonBack;
         private ArrayList _controls = new ArrayList();
         private readonly Panel _content;
 
         public BaseView(Panel content)
         {
             this._content = content;
+
+            this.InitializeComponent();
         }
 
         public virtual void InitializeComponent()
         {
             this.SetBackground();
+
+            this._buttonBack = new SquareButton(this, 20, 180, "Back");
         }
 
         protected void SetBackground()
@@ -90,5 +95,7 @@ namespace LegoTechnicPlotter.Views.Base
 
             return control.IsSubElement;
         }
+
+        public SquareButton Back { get { return this._buttonBack; } }
     }
 }

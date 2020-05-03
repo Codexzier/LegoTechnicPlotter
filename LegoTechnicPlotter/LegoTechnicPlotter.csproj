@@ -39,6 +39,9 @@
   <!-- Everything below here is custom to .NET MF / Gadgeteer template-->
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="Components\DrawPointItem.cs" />
+    <Compile Include="Components\Move.cs" />
+    <Compile Include="Components\PlotterController.cs" />
     <Compile Include="Controls\IElementControl.cs" />
     <Compile Include="Controls\InfoBar.cs" />
     <Compile Include="Controls\PathPlotterBuilder.cs" />
@@ -58,9 +61,12 @@
     </Compile>
     <Compile Include="Styles\SquareBlueColors.cs" />
     <Compile Include="Views\Base\BaseView.cs" />
+    <Compile Include="Views\LoadPhoto\LoadPhotoView.cs" />
     <Compile Include="Views\Main\MainView.cs" />
     <Compile Include="Views\Menu\MenuView.cs" />
     <Compile Include="Views\PhotoResult\PhotoResultView.cs" />
+    <Compile Include="Views\Print\CalibrateView.cs" />
+    <Compile Include="Views\Print\PrintView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Gadgeteer" />
@@ -77,6 +83,9 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="GTM.GHIElectronics.Display_T35, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="GTM.GHIElectronics.Extender, Version=4.2.110.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="GTM.GHIElectronics.SDCard, Version=4.2.110.0, Culture=neutral, processorArchitecture=MSIL">
@@ -107,5 +116,8 @@
     </None>
     <None Include="Resources\NinaB.tinyfnt" />
     <None Include="Resources\small.tinyfnt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
 </Project>

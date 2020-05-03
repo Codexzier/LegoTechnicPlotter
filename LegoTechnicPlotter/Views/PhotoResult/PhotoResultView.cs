@@ -15,15 +15,14 @@ namespace LegoTechnicPlotter.Views.PhotoResult
         public PhotoResultView(Panel content)
             : base(content)
         {
-            this.InitializeComponent();
+          
         }
 
         public override void InitializeComponent()
         {
             base.InitializeComponent();
 
-            this._buttonBack = new SquareButton(this, 20, 180, "Back");
-            
+           
         }
 
         public void LoadPicture(Picture picture)
@@ -39,7 +38,5 @@ namespace LegoTechnicPlotter.Views.PhotoResult
 
             this._buttonBack.MoveToLast(this);
         }
-
-        public SquareButton Back { get { return this._buttonBack; } }
     }
 }

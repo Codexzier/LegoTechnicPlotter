@@ -17,6 +17,8 @@ using LegoTechnicPlotter.Controls;
 using LegoTechnicPlotter.Views.Base;
 using LegoTechnicPlotter.Views.Menu;
 using LegoTechnicPlotter.Views.PhotoResult;
+using LegoTechnicPlotter.Components;
+using LegoTechnicPlotter.Views.Print;
 
 namespace LegoTechnicPlotter
 {
@@ -24,6 +26,9 @@ namespace LegoTechnicPlotter
     {
         private MenuView _menu;
         private PhotoResultView _photoResult;
+
+        private PrintView _print;
+       
 
         void ProgramStarted()
         {
@@ -34,27 +39,38 @@ namespace LegoTechnicPlotter
 
         private void InitialiseViews()
         {
-            var main = this.Display_T35.WPFWindow;
+            this.ShowMenu();
+            //var main = this.Display_T35.WPFWindow;
 
-            var mainPanel = new Panel();
+            //var mainPanel = new Panel();
 
-            // Menu content.
-            this._menu = new MenuView(mainPanel);
-            this._menu.CreatePhoto.ButtonPressedEvent += CreatePhoto_ButtonPressedEvent;
+            //// Menu content.
+            //this._menu = new MenuView(mainPanel);
 
-            this._photoResult = new PhotoResultView(mainPanel);
-            this._photoResult.Back.ButtonPressedEvent += Back_ButtonPressedEvent;
-            this._photoResult.Hide();
+            //this._menu.CreatePhoto.ButtonPressedEvent += this.CreatePhoto_ButtonPressedEvent;
+            //this._photoResult = new PhotoResultView(mainPanel);
+            //this._photoResult.Back.ButtonPressedEvent += this.Back_ButtonPressedEvent;
+            //this._photoResult.Hide();
 
-            main.Child = mainPanel;
+            //this._menu.Print.ButtonPressedEvent += this.Print_ButtonPressedEvent;
+
+            //this._print = new PrintView(mainPanel, this.extender);
+            //this._print.Back.ButtonPressedEvent += this.Back_ButtonPressedEvent;
+            //this._print.Hide();
+
+
+            //main.Child = mainPanel;
         }
 
 
 
-        private void Back_ButtonPressedEvent()
+        private void ShowMenu()
         {
-            this._photoResult.Hide();
-            this._menu.Show();
+            var main = this.Display_T35.WPFWindow;
+            var mainPanel = new Panel();
+            this._menu = new MenuView(mainPanel);
+            this._menu.Print.ButtonPressedEvent += this.ShowPrint;
+            main.Child = mainPanel;
         }
 
         private void CreatePhoto_ButtonPressedEvent()
@@ -79,6 +95,16 @@ namespace LegoTechnicPlotter
         {
             Debug.Print("Was captured");
             this._photoResult.LoadPicture(picture);
+        }
+
+
+        private void ShowPrint()
+        {
+            var main = this.Display_T35.WPFWindow;
+            var mainPanel = new Panel();
+            this._print = new PrintView(mainPanel, this.extender);
+            this._print.Back.ButtonPressedEvent += this.ShowMenu;
+            main.Child = mainPanel;
         }
     }
 }
