@@ -36,6 +36,7 @@ namespace LegoTechnicPlotter
 
         private PrintView _print;
         private CalibrateView _calibrate;
+        private RunningPrintView _runningPrint;
 
         void ProgramStarted()
         {
@@ -83,7 +84,7 @@ namespace LegoTechnicPlotter
             var mainPanel = new Panel();
             this._createPhoto = new CreatePhotoView(mainPanel, this.Camera);
 
-            this._photoResult.Back.ButtonPressedEvent += this.ShowMenu;
+            this._createPhoto.Back.ButtonPressedEvent += this.ShowMenu;
 
             main.Child = mainPanel;
         }
@@ -129,17 +130,35 @@ namespace LegoTechnicPlotter
             this._print = new PrintView(mainPanel);
 
             this._print.ButtonCalibrate.ButtonPressedEvent += this.ShowCalibrate;
+            this._print.ButtonRunningPrint.ButtonPressedEvent += this.ShowRunningPrint;
             this._print.Back.ButtonPressedEvent += this.ShowMenu;
 
             main.Child = mainPanel;
         }
-        
+
         private void ShowCalibrate()
         {
             var main = this.Display_T35.WPFWindow;
             var mainPanel = new Panel();
-            this._calibrate = new CalibrateView(mainPanel, PlotterController.GetInstance(this.extender));
-            this._print.Back.ButtonPressedEvent += this.ShowPrint;
+            this._calibrate = new CalibrateView(mainPanel,
+                PlotterController.GetInstance(this.extender, this.SdCard),
+                ProgramSettings.GetInstance(this.SdCard));
+
+            this._calibrate.Back.ButtonPressedEvent += this.ShowPrint;
+
+            main.Child = mainPanel;
+        }
+
+        private void ShowRunningPrint()
+        {
+            var main = this.Display_T35.WPFWindow;
+            var mainPanel = new Panel();
+            this._runningPrint = new RunningPrintView(mainPanel, 
+                PlotterController.GetInstance(this.extender, this.SdCard));
+            this._runningPrint.Start();
+
+            this._runningPrint.Back.ButtonPressedEvent += this.ShowPrint;
+
             main.Child = mainPanel;
         }
     }

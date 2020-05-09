@@ -45,6 +45,8 @@
     <Compile Include="Components\Plotter\PlotterController.cs" />
     <Compile Include="Components\ProgramSettings.cs" />
     <Compile Include="Components\SettingItem.cs" />
+    <Compile Include="Components\SettingNames.cs" />
+    <Compile Include="Components\TypeParseExtensions.cs" />
     <Compile Include="Controls\BaseButton.cs" />
     <Compile Include="Controls\IconButton.cs" />
     <Compile Include="Controls\IElementControl.cs" />
@@ -52,6 +54,7 @@
     <Compile Include="Controls\PathPlotterBuilder.cs" />
     <Compile Include="Controls\SquareButton.cs" />
     <Compile Include="Controls\SquareButtonPosition.cs" />
+    <Compile Include="Controls\SquareLabel.cs" />
     <Compile Include="Controls\SquarePhoto.cs" />
     <Compile Include="Program.generated.cs">
       <AutoGen>True</AutoGen>
@@ -75,6 +78,7 @@
     <Compile Include="Views\PreviewPrint\PreviewPrintView.cs" />
     <Compile Include="Views\Print\CalibrateView.cs" />
     <Compile Include="Views\Print\PrintView.cs" />
+    <Compile Include="Views\Print\RunningPrintView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Gadgeteer" />

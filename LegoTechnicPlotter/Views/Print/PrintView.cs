@@ -12,7 +12,7 @@ namespace LegoTechnicPlotter.Views.Print
     public class PrintView : BaseView
     {
         private SquareButton _buttonCalibrate;
-        private SquareButton _buttonStart;
+        private SquareButton _buttonRunningPrint;
 
         public PrintView(Panel content)
             : base(content)
@@ -26,19 +26,10 @@ namespace LegoTechnicPlotter.Views.Print
             this._buttonCalibrate = new SquareButton(this, SquareButtonPosition.Line_1, "Calibrate");
 
 
-            this._buttonStart = new SquareButton(this, SquareButtonPosition.Line_2, "Start");
-            this._buttonStart.ButtonPressedEvent += this._buttonStart_ButtonPressedEvent;
+            this._buttonRunningPrint = new SquareButton(this, SquareButtonPosition.Line_2, "Start");
         }
 
         public SquareButton ButtonCalibrate { get { return this._buttonCalibrate; } }
-
-        private void _buttonStart_ButtonPressedEvent()
-        {
-            ArrayList al = new ArrayList();
-
-            al.Add(new MovePointItem(0, 0));
-
-            
-        }
+        public SquareButton ButtonRunningPrint { get { return this._buttonRunningPrint; } }
     }
 }

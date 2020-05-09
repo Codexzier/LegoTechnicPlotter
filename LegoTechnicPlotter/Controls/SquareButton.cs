@@ -11,36 +11,15 @@ namespace LegoTechnicPlotter.Controls
     /// <summary>
     /// Create instance to create a sqare button with touch effect.
     /// </summary>
-    public class SquareButton : BaseButton //Canvas, IElementControl
+    public class SquareButton : BaseButton
     {
         private SquareButton _buttonPressEffect;
-        private bool _isEffect = false;
-        private readonly DispatcherTimer _timer = new DispatcherTimer();
-        private Pen _pen = new Pen(ColorUtility.ColorFromRGB(120, 136, 150), 1);
+        
         private string _text;
 
         public SquareButton(BaseView view, SquareButtonPosition position, string text)
             : this(view, 20, SquareButton.GetTopDistance(position), text)
         {
-        }
-
-        private static int GetTopDistance(SquareButtonPosition position)
-        {
-            switch (position)
-            {
-                case SquareButtonPosition.Line_1:
-                    return 30;
-                case SquareButtonPosition.Line_2:
-                    return 80;
-                case SquareButtonPosition.Line_3:
-                    return 130;
-                case SquareButtonPosition.Line_4:
-                    return 180;
-                default:
-                    break;
-            }
-
-            return 0;
         }
 
         /// <summary>
@@ -53,7 +32,10 @@ namespace LegoTechnicPlotter.Controls
         public SquareButton(BaseView view, int left, int top, string text)
             : this(left, top, text)
         {
-            this.CreateEffects(left, top, text);
+            this._buttonPressEffect = new SquareButton(left, top, text, SquareBlueColors.LightBluePress);
+            this._buttonPressEffect.Visibility = Visibility.Collapsed;
+
+            this.SetupTouch();
 
             view.Add(this);
             view.Add(this._buttonPressEffect);
@@ -80,45 +62,13 @@ namespace LegoTechnicPlotter.Controls
         /// <param name="left">Left distance.</param>
         /// <param name="top">Top distance.</param>
         /// <param name="text">Set text for the button.</param>
-        private SquareButton(int left, int top, string text)
+        private SquareButton(int left, int top, string text) : base(left, top)
         {
-            this._timer.Interval = TimeSpan.FromTicks(TimeSpan.TicksPerMillisecond * 500);
-            this._timer.Tick += this._timer_Tick;
-
             this.Width = 252;
             this.Height = 42;
 
-            this.HorizontalAlignment = HorizontalAlignment.Left;
-            this.VerticalAlignment = VerticalAlignment.Top;
-            this.SetMargin(left, top, 0, 0);
             this._text = text;
         }
-
-        /// <summary>
-        /// Crate button effect, if user touch the button.
-        /// </summary>
-        /// <param name="left">Left distance.</param>
-        /// <param name="top">Top distance.</param>
-        /// <param name="text">Set text for the button.</param>
-        private void CreateEffects(int left, int top, string text)
-        {
-            this._buttonPressEffect = new SquareButton(left, top, text, SquareBlueColors.LightBluePress);
-            this._buttonPressEffect.Visibility = Visibility.Collapsed;
-            this.TouchUp += SquareButton_TouchUp;
-        }
-
-        private void SquareButton_TouchUp(object sender, Microsoft.SPOT.Input.TouchEventArgs e)
-        {
-            this.SetPressEffect();
-
-            if (this.ButtonPressedEvent != null)
-            {
-                this.ButtonPressedEvent.Invoke();
-            }
-        }
-
-        public delegate void ButtonPressedEventHandler();
-        public event ButtonPressedEventHandler ButtonPressedEvent;
 
         /// <summary>
         /// It render the target content button with specialize border.
@@ -141,8 +91,8 @@ namespace LegoTechnicPlotter.Controls
             dc.DrawLine(this._pen, 230, 40, 0, 40);
             dc.DrawLine(this._pen, 0, 40, 0, 0);
 
-            int left, top, right, bottom;
-            this.GetMargin(out left, out top, out right, out bottom);
+            //int left, top, right, bottom;
+            //this.GetMargin(out left, out top, out right, out bottom);
 
             dc.DrawText(this._text,
                 Resources.GetFont(Resources.FontResources.NinaB),
@@ -154,36 +104,26 @@ namespace LegoTechnicPlotter.Controls
         /// <summary>
         /// Execute by user touch. Locked, if the touch schow the effect.
         /// </summary>
-        internal void SetPressEffect()
+        protected override void SetPressEffect()
         {
             if (this._buttonPressEffect.Visibility == Microsoft.SPOT.Presentation.Visibility.Visible)
             {
                 return;
             }
 
+            base.SetPressEffect();
             this._buttonPressEffect.Visibility = Visibility.Visible;
-            this._timer.Start();
         }
 
-        /// <summary>
-        /// Hide the effect.
-        /// </summary>
-        private void _timer_Tick(object sender, EventArgs e)
+        protected override void SetPressEffectEnd()
         {
-            this._timer.Stop();
-
+            base.SetPressEffectEnd();
             this._buttonPressEffect.Visibility = Visibility.Collapsed;
         }
 
-        public bool IsSubElement { get { return this._isEffect; } }
-
-        internal void MoveToLast(BaseView view)
+        public override void MoveElementToLastLevel(BaseView view)
         {
-            view.Remove(this);
-            view.Remove(this._buttonPressEffect);
-
-            view.Add(this);
-            view.Add(this._buttonPressEffect);
+            base.MoveElementToLastLevel(view, this._buttonPressEffect);
         }
     }
 }

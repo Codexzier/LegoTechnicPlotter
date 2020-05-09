@@ -36,7 +36,7 @@ namespace LegoTechnicPlotter.Views.CreatePhoto
             this._image.SetMargin(0, 0, 0, 0);
             this.Add(this._image);
 
-            this._buttonBack.MoveToLast(this);
+            this._buttonBack.MoveElementToLastLevel(this);
         }
     }
 }
