@@ -18,7 +18,7 @@ namespace LegoTechnicPlotter.Controls
         private string _text;
 
         public SquareButton(BaseView view, SquareButtonPosition position, string text)
-            : this(view, 20, SquareButton.GetTopDistance(position), text)
+            : this(view, 20, SquareStyleHelper.GetTopDistance(position), text)
         {
         }
 

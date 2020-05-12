@@ -56,6 +56,7 @@
     <Compile Include="Controls\SquareButtonPosition.cs" />
     <Compile Include="Controls\SquareLabel.cs" />
     <Compile Include="Controls\SquarePhoto.cs" />
+    <Compile Include="Controls\SquareStyleHelper.cs" />
     <Compile Include="Program.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
