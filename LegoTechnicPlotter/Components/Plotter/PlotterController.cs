@@ -2,6 +2,7 @@ using System;
 using Microsoft.SPOT;
 using Gadgeteer.Interfaces;
 using System.Collections;
+using LegoTechnicPlotter.Views;
 
 namespace LegoTechnicPlotter.Components.Plotter
 {

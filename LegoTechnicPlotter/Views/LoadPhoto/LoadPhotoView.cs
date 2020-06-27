@@ -11,7 +11,8 @@ namespace LegoTechnicPlotter.Views.LoadPhoto
     {
         private SquareButton _buttonStart;
 
-        public LoadPhotoView(Panel content) : base(content)
+        public LoadPhotoView(IApplicationContext context)
+            : base(context)
         {
         }
 

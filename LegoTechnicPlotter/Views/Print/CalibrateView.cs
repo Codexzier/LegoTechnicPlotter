@@ -13,6 +13,9 @@ namespace LegoTechnicPlotter.Views.Print
     {
         private PlotterController _plotterController;
         private ProgramSettings _settings;
+
+
+
         private IconButton _buttonLeft;
         private IconButton _buttonRight;
         private IconButton _buttonUp;
@@ -21,8 +24,8 @@ namespace LegoTechnicPlotter.Views.Print
         private IconButton _buttonFixStart;
         private IconButton _buttonFixEnd;
 
-        public CalibrateView(Panel content, PlotterController controller, ProgramSettings settings)
-            : base(content)
+        public CalibrateView(IApplicationContext context, PlotterController controller, ProgramSettings settings)
+            : base(context)
         {
             this._plotterController = controller;
             this._settings = settings;

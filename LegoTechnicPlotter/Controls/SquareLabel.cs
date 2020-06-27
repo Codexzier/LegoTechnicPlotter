@@ -9,7 +9,6 @@ namespace LegoTechnicPlotter.Controls
 {
     public class SquareLabel : Canvas, IElementControl
     {
-        private Pen _pen1 = new Pen(ColorUtility.ColorFromRGB(192, 225, 255), 3);
         private Pen _pen2 = new Pen(ColorUtility.ColorFromRGB(192, 225, 255), 1);
 
         private string _text;
@@ -17,26 +16,34 @@ namespace LegoTechnicPlotter.Controls
 
         public SquareLabel(BaseView view, string text, int left, int top)
         {
-            this.Width = 252;
+            this.Width = 320;
             this.Height = 42;
 
             this._text = text;
 
+            this.HorizontalAlignment = Microsoft.SPOT.Presentation.HorizontalAlignment.Left;
+            this.VerticalAlignment = Microsoft.SPOT.Presentation.VerticalAlignment.Top;
             this.SetMargin(left, top, 0, 0);
+
+            view.Add(this);
         }
 
         public override void OnRender(DrawingContext dc)
         {
             base.OnRender(dc);
 
-            dc.DrawLine(this._pen1, 0, 0, 250, 0);
-            dc.DrawLine(this._pen2, 0, 37, 250, 37);
+            dc.DrawLine(this._pen2, 0, 37, 320, 37);
 
             dc.DrawText(this._text,
                 Resources.GetFont(Resources.FontResources.NinaB),
                 SquareBlueColors.LightBluePress,
                 20,
                 15);
+        }
+
+        public bool IsSubElement
+        {
+            get { return true; }
         }
     }
 }

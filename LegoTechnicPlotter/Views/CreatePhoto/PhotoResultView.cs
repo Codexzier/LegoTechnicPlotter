@@ -12,8 +12,8 @@ namespace LegoTechnicPlotter.Views.CreatePhoto
         private SquareButton _buttonBack;
         private Image _image;
 
-        public PhotoResultView(Panel content)
-            : base(content)
+        public PhotoResultView(IApplicationContext context)
+            : base(context)
         {
           
         }

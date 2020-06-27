@@ -7,7 +7,8 @@ namespace LegoTechnicPlotter.Views.PreviewPrint
 {
     public class PreviewPrintView : BaseView
     {
-        public PreviewPrintView(Panel content) : base(content)
+        public PreviewPrintView(IApplicationContext context)
+            : base(context)
         {
 
         }

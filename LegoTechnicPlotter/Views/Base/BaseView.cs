@@ -13,18 +13,26 @@ namespace LegoTechnicPlotter.Views.Base
     /// <summary>
     /// Base view. Draw a background with base color and has the reference of the panel.
     /// </summary>
-    public abstract class BaseView
+    public abstract class BaseView : IDisposable
     {
+        private readonly IApplicationContext _context;
+
         private SquareButton _buttonBack;
         private ArrayList _controls = new ArrayList();
-        private readonly Panel _content;
+        private readonly Panel _content = new Panel();
+        private readonly bool _withoutBackButton;
 
-        public BaseView(Panel content)
+        public BaseView(IApplicationContext context, bool withoutBack = false)
         {
-            this._content = content;
+            this._context = context;
+            this._withoutBackButton = withoutBack;
 
             this.InitializeComponent();
         }
+
+        public Panel GetPanel() { return this._content; }
+
+        protected IApplicationContext Context { get { return this._context; } }
 
         public virtual void InitializeComponent()
         {
@@ -97,5 +105,9 @@ namespace LegoTechnicPlotter.Views.Base
         }
 
         public SquareButton Back { get { return this._buttonBack; } }
+
+        public virtual void Dispose()
+        {
+        }
     }
 }

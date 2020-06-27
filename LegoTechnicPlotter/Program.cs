@@ -22,13 +22,17 @@ using LegoTechnicPlotter.Views.LoadPhoto;
 using LegoTechnicPlotter.Views.PreviewPrint;
 using LegoTechnicPlotter.Views.CreatePhoto;
 using LegoTechnicPlotter.Components.Plotter;
+using LegoTechnicPlotter.Views;
 
 namespace LegoTechnicPlotter
 {
     public partial class Program
     {
-        private ProgramSettings _settings;
-        private MenuView _menu;
+        private IApplicationContext _context;
+
+
+        //private MenuView _menu;
+
         private CreatePhotoView _createPhoto;
         private PhotoResultView _photoResult;
         private LoadPhotoView _loadPhoto;
@@ -40,126 +44,133 @@ namespace LegoTechnicPlotter
 
         void ProgramStarted()
         {
-            this._settings = ProgramSettings.GetInstance(SdCard);
+            this._context = new ApplicationContext(
+                this.SdCard,
+                this.Display_T35,
+                this.extender);
 
-            this.ShowMenu();
+
+            this._context.Show(AppView.Menu);
+
+
+            // this.ShowMenu();
         }
 
         #region Menu
 
-        private void ShowMenu()
-        {
-            var main = this.Display_T35.WPFWindow;
-            var mainPanel = new Panel();
-            this._menu = new MenuView(mainPanel);
+        //private void ShowMenu()
+        //{
+        //    var main = this.Display_T35.WPFWindow;
+        //    //var mainPanel = new Panel();
+        //    this._menu = new MenuView();
 
-            this._menu.CreatePhoto.ButtonPressedEvent += this.ShowCreatePhoto;
-            this._menu.LoadPhoto.ButtonPressedEvent += this.ShowLoadPhoto;
-            this._menu.PreviewPrint.ButtonPressedEvent += this.ShowPreviewPrint;
-            this._menu.Print.ButtonPressedEvent += this.ShowPrint;
+        //    //this._menu.CreatePhoto.ButtonPressedEvent += this.ShowCreatePhoto;
+        //    //this._menu.LoadPhoto.ButtonPressedEvent += this.ShowLoadPhoto;
+        //    //this._menu.PreviewPrint.ButtonPressedEvent += this.ShowPreviewPrint;
+        //    //this._menu.Print.ButtonPressedEvent += this.ShowPrint;
 
-            main.Child = mainPanel;
-        }
+        //    main.Child = this._menu.GetPanel();
+        //}
 
-        private void RemoveMenuEvents()
-        {
-            if (this._menu == null)
-            {
-                return;
-            }
+        //private void RemoveMenuEvents()
+        //{
+        //    if (this._menu == null)
+        //    {
+        //        return;
+        //    }
 
-            this._menu.CreatePhoto.ButtonPressedEvent -= this.ShowCreatePhoto;
-            this._menu.LoadPhoto.ButtonPressedEvent -= this.ShowLoadPhoto;
-            this._menu.PreviewPrint.ButtonPressedEvent -= this.ShowPreviewPrint;
-            this._menu.Print.ButtonPressedEvent -= this.ShowPrint;
-        }
+        //    this._menu.CreatePhoto.ButtonPressedEvent -= this.ShowCreatePhoto;
+        //    this._menu.LoadPhoto.ButtonPressedEvent -= this.ShowLoadPhoto;
+        //    //this._menu.PreviewPrint.ButtonPressedEvent -= this.ShowPreviewPrint;
+        //    //this._menu.Print.ButtonPressedEvent -= this.ShowPrint;
+        //}
 
         #endregion
 
         #region Create photo
 
-        private void ShowCreatePhoto()
-        {
-            var main = this.Display_T35.WPFWindow;
-            var mainPanel = new Panel();
-            this._createPhoto = new CreatePhotoView(mainPanel, this.Camera);
+        //private void ShowCreatePhoto()
+        //{
+        //    var main = this.Display_T35.WPFWindow;
+        //    var mainPanel = new Panel();
+        //    this._createPhoto = new CreatePhotoView(mainPanel, this.Camera);
 
-            this._createPhoto.Back.ButtonPressedEvent += this.ShowMenu;
+        //    this._createPhoto.Back.ButtonPressedEvent += this.ShowMenu;
 
-            main.Child = mainPanel;
-        }
+        //    main.Child = mainPanel;
+        //}
 
-        private void RemovCreatePhotoEvents()
-        {
-            if (this._createPhoto == null)
-            {
-                return;
-            }
+        //private void RemovCreatePhotoEvents()
+        //{
+        //    if (this._createPhoto == null)
+        //    {
+        //        return;
+        //    }
 
-            this._createPhoto.Back.ButtonPressedEvent -= this.ShowMenu;
-        }
+        //    this._createPhoto.Back.ButtonPressedEvent -= this.ShowMenu;
+        //}
 
         #endregion
 
-        private void ShowLoadPhoto()
-        {
-            var main = this.Display_T35.WPFWindow;
-            var mainPanel = new Panel();
-            this._loadPhoto = new LoadPhotoView(mainPanel);
+        //private void ShowLoadPhoto()
+        //{
+        //    var main = this.Display_T35.WPFWindow;
+        //    var mainPanel = new Panel();
+        //    this._loadPhoto = new LoadPhotoView(mainPanel);
 
-            this._loadPhoto.Back.ButtonPressedEvent += this.ShowMenu;
+        //    this._loadPhoto.Back.ButtonPressedEvent += this.ShowMenu;
 
-            main.Child = mainPanel;
-        }
+        //    main.Child = mainPanel;
+        //}
 
-        private void ShowPreviewPrint()
-        {
-            var main = this.Display_T35.WPFWindow;
-            var mainPanel = new Panel();
-            this._previewPrint = new PreviewPrintView(mainPanel);
+        //private void ShowPreviewPrint()
+        //{
+        //    var main = this.Display_T35.WPFWindow;
+        //    var mainPanel = new Panel();
+        //    this._previewPrint = new PreviewPrintView(mainPanel);
 
-            this._previewPrint.Back.ButtonPressedEvent += this.ShowMenu;
+        //    this._previewPrint.Back.ButtonPressedEvent += this.ShowMenu;
 
-            main.Child = mainPanel;
-        }
+        //    main.Child = mainPanel;
+        //}
 
-        private void ShowPrint()
-        {
-            var main = this.Display_T35.WPFWindow;
-            var mainPanel = new Panel();
-            this._print = new PrintView(mainPanel);
+        //private void ShowPrint()
+        //{
+        //    var main = this.Display_T35.WPFWindow;
+        //    var mainPanel = new Panel();
+        //    this._print = new PrintView(mainPanel);
 
-            this._print.ButtonCalibrate.ButtonPressedEvent += this.ShowCalibrate;
-            this._print.ButtonRunningPrint.ButtonPressedEvent += this.ShowRunningPrint;
-            this._print.Back.ButtonPressedEvent += this.ShowMenu;
+        //    this._print.ButtonCalibrate.ButtonPressedEvent += this.ShowCalibrate;
+        //    this._print.ButtonRunningPrint.ButtonPressedEvent += this.ShowRunningPrint;
+        //    this._print.Back.ButtonPressedEvent += this.ShowMenu;
 
-            main.Child = mainPanel;
-        }
+        //    main.Child = mainPanel;
+        //}
 
-        private void ShowCalibrate()
-        {
-            var main = this.Display_T35.WPFWindow;
-            var mainPanel = new Panel();
-            this._calibrate = new CalibrateView(mainPanel,
-                PlotterController.GetInstance(this.extender, this.SdCard),
-                ProgramSettings.GetInstance(this.SdCard));
+        //private void ShowCalibrate()
+        //{
+        //    var main = this.Display_T35.WPFWindow;
+        //    var mainPanel = new Panel();
+        //    this._calibrate = new CalibrateView(mainPanel,
+        //        PlotterController.GetInstance(this.extender, this.SdCard),
+        //        ProgramSettings.GetInstance(this.SdCard));
 
-            this._calibrate.Back.ButtonPressedEvent += this.ShowPrint;
+        //    this._calibrate.Back.ButtonPressedEvent += this.ShowPrint;
 
-            main.Child = mainPanel;
-        }
+        //    main.Child = mainPanel;
+        //}
 
-        private void ShowRunningPrint()
-        {
-            var main = this.Display_T35.WPFWindow;
-            var mainPanel = new Panel();
-            this._runningPrint = new RunningPrintView(mainPanel, 
-                PlotterController.GetInstance(this.extender, this.SdCard));
-            this._runningPrint.Start();
+        //private void ShowRunningPrint()
+        //{
+        //    var main = this.Display_T35.WPFWindow;
+        //    var mainPanel = new Panel();
+        //    this._runningPrint = new RunningPrintView(mainPanel, 
+        //        PlotterController.GetInstance(this.extender, this.SdCard));
+        //    this._runningPrint.Start();
 
-            this._runningPrint.Back.ButtonPressedEvent += this.ShowPrint;
+        //    this._runningPrint.Back.ButtonPressedEvent += this.ShowPrint;
 
-            main.Child = mainPanel;
-        }
+        //    main.Child = mainPanel;
+        //}
     }
 }

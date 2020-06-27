@@ -62,7 +62,14 @@ namespace LegoTechnicPlotter.Components
             var settingItems = this.GetSettingItems();
             this.SetOrAddSetting(key, value, settingItems);
 
-            using (StreamWriter sw = new StreamWriter(this.GetStream()))
+            var stream = this.GetStream();
+
+            if (stream == null)
+            {
+                return;
+            }
+
+            using (StreamWriter sw = new StreamWriter(stream))
             {
                 foreach (var itemObject in settingItems)
                 {
@@ -123,7 +130,15 @@ namespace LegoTechnicPlotter.Components
         private ArrayList GetSettingItems()
         {
             ArrayList al = new ArrayList();
-            using (StreamReader sr = new StreamReader(this.GetStream()))
+
+            var stream = this.GetStream();
+
+            if(stream == null)
+            {
+                return al;
+            }
+
+            using (StreamReader sr = new StreamReader(stream))
             {
 
                 string str = string.Empty;
@@ -152,6 +167,12 @@ namespace LegoTechnicPlotter.Components
         private FileStream GetStream()
         {
             StorageDevice sd = this._sdCard.GetStorageDevice();
+
+            if (sd == null)
+            {
+                return null;
+            }
+
             var stream = sd.Open(this._filename, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             return stream;
         }

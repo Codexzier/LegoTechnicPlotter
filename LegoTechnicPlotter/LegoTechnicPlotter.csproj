@@ -70,8 +70,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Styles\SquareBlueColors.cs" />
+    <Compile Include="Views\ApplicationContext.cs" />
+    <Compile Include="Views\AppView.cs" />
     <Compile Include="Views\Base\BaseView.cs" />
     <Compile Include="Views\CreatePhoto\CreatePhotoView.cs" />
+    <Compile Include="Views\IApplicationContext.cs" />
     <Compile Include="Views\LoadPhoto\LoadPhotoView.cs" />
     <Compile Include="Views\Main\MainView.cs" />
     <Compile Include="Views\Menu\MenuView.cs" />

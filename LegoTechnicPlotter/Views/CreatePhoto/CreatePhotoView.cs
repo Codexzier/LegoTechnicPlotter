@@ -11,8 +11,9 @@ namespace LegoTechnicPlotter.Views.CreatePhoto
     {
         private SquareButton _buttonTakePhoto;
         private Camera _camera;
-        public CreatePhotoView(Panel content, Camera camera)
-            : base(content)
+
+        public CreatePhotoView(IApplicationContext context, Camera camera)
+            : base(context)
         {
             this._camera = camera;
             this._camera.PictureCaptured += this._camera_PictureCaptured;
