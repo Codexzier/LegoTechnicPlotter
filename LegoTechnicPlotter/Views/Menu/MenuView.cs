@@ -24,9 +24,6 @@ namespace LegoTechnicPlotter.Views.Menu
         private SquareButton _buttonLoadPhoto;
         private SquareButton _buttonCalibrate;
 
-
-        //private SquareButton _buttonPreviewPrint;
-        //private SquareButton _buttonPrint;
         private InfoBar _infobar;
 
         public MenuView(IApplicationContext context)
@@ -61,41 +58,6 @@ namespace LegoTechnicPlotter.Views.Menu
         {
             this.Context.Show(AppView.Calibrate, this.ApplicationView);
         }
-
-        public SquareButton CreatePhoto { get { return this._buttonCreatePhoto; } }
-
-        public SquareButton LoadPhoto { get { return this._buttonLoadPhoto; } }
-
-        public SquareButton Calibrate { get { return this._buttonCalibrate; } }
-
-        //public SquareButton PreviewPrint { get { return this._buttonPreviewPrint; } }
-        //public SquareButton Print { get { return this._buttonPrint; } }
-
-        //private void GetText(Panel canvas)
-        //{
-        //    Font baseFont = Resources.GetFont(Resources.FontResources.NinaB);
-        //    Text text = new Text(baseFont, "Hello World!");
-        //    text.ForeColor = Colors.Black;
-        //    text.HorizontalAlignment = HorizontalAlignment.Left;
-        //    text.VerticalAlignment = VerticalAlignment.Top;
-        //    text.SetMargin(10, 10, 0, 0);
-        //    text.Height = 20;
-        //    text.Visibility = Visibility.Visible;
-        //    canvas.Children.Add(text);
-        //}
-
-        //private Text CreateText(string textContent)
-        //{
-        //    Font baseFont = Resources.GetFont(Resources.FontResources.NinaB);
-        //    var text = new Text(baseFont, textContent);
-        //    text.ForeColor = Colors.Black;
-        //    text.HorizontalAlignment = HorizontalAlignment.Left;
-        //    text.VerticalAlignment = VerticalAlignment.Top;
-        //    text.SetMargin(10, 10, 0, 0);
-        //    text.Height = 20;
-
-        //    return text;
-        //}
 
         public override void Dispose()
         {

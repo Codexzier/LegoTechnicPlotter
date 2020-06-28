@@ -12,7 +12,7 @@ namespace LegoTechnicPlotter.Views.CreatePhoto
         public static Gadgeteer.Picture ActualPicture;
         private Camera _camera;
  
-        private IconButton _buttonRepeatTakePicture;
+
         private SquareButton _buttonTakePhoto;
         private SquareButton _buttonAccept;
         

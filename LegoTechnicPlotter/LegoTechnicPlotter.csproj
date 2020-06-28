@@ -57,7 +57,6 @@
     <Compile Include="Controls\SquareLabel.cs" />
     <Compile Include="Controls\SquarePhoto.cs" />
     <Compile Include="Controls\SquareStyleHelper.cs" />
-    <Compile Include="Controls\SquareWaitAnimation.cs" />
     <Compile Include="Program.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -77,7 +76,6 @@
     <Compile Include="Views\CreatePhoto\CreatePhotoView.cs" />
     <Compile Include="Views\IApplicationContext.cs" />
     <Compile Include="Views\LoadPhoto\LoadPhotoView.cs" />
-    <Compile Include="Views\Main\MainView.cs" />
     <Compile Include="Views\Menu\MenuView.cs" />
     <Compile Include="Views\PreviewPrint\PreviewPrintView.cs" />
     <Compile Include="Views\Print\CalibrateView.cs" />
