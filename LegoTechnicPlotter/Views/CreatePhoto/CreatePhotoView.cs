@@ -9,35 +9,46 @@ namespace LegoTechnicPlotter.Views.CreatePhoto
 {
     public class CreatePhotoView : BaseView
     {
-        private SquareButton _buttonTakePhoto;
+        public static Gadgeteer.Picture ActualPicture;
         private Camera _camera;
-
-        public CreatePhotoView(IApplicationContext context, Camera camera)
-            : base(context)
+ 
+        private IconButton _buttonRepeatTakePicture;
+        private SquareButton _buttonTakePhoto;
+        private SquareButton _buttonAccept;
+        
+        public CreatePhotoView(IApplicationContext context, AppView fromApplicationView, Camera camera)
+            : base(context, AppView.CreatePhoto, fromApplicationView, "Create photo")
         {
             this._camera = camera;
-            this._camera.PictureCaptured += this._camera_PictureCaptured;
         }
 
         public override void InitializeComponent()
         {
             base.InitializeComponent();
 
-            this._buttonTakePhoto = new SquareButton(this, SquareButtonPosition.Line_1, "Take photo");
+            this._buttonTakePhoto = new SquareButton(this, SquareButtonPosition.Line_2, "Take photo");
             this._buttonTakePhoto.ButtonPressedEvent += _buttonTakePhoto_ButtonPressedEvent;
+
+            this._buttonAccept = new SquareButton(this, SquareButtonPosition.Line_3, "Accept");
+            this._buttonAccept.ButtonPressedEvent += _buttonAccept_ButtonPressedEvent;
         }
 
-        void _buttonTakePhoto_ButtonPressedEvent()
+        private void _buttonAccept_ButtonPressedEvent()
         {
-            this._camera.TakePicture();
+            this.Context.Show(AppView.PreviewForPrint, this.ApplicationView);
         }
 
-        private void _camera_PictureCaptured(Camera sender, Gadgeteer.Picture picture)
+        public void _buttonTakePhoto_ButtonPressedEvent()
         {
-            Debug.Print("Was captured");
-            //this._photoResult.LoadPicture(picture);
+            this.Context.Show(AppView.WaitCameraShot, this.ApplicationView);
         }
 
 
+        public override void Dispose()
+        {
+            base.Dispose();
+
+            this._buttonTakePhoto.ButtonPressedEvent -= _buttonTakePhoto_ButtonPressedEvent;
+        }
     }
 }

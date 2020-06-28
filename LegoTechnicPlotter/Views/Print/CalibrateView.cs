@@ -14,8 +14,6 @@ namespace LegoTechnicPlotter.Views.Print
         private PlotterController _plotterController;
         private ProgramSettings _settings;
 
-
-
         private IconButton _buttonLeft;
         private IconButton _buttonRight;
         private IconButton _buttonUp;
@@ -24,8 +22,8 @@ namespace LegoTechnicPlotter.Views.Print
         private IconButton _buttonFixStart;
         private IconButton _buttonFixEnd;
 
-        public CalibrateView(IApplicationContext context, PlotterController controller, ProgramSettings settings)
-            : base(context)
+        public CalibrateView(IApplicationContext context, PlotterController controller, ProgramSettings settings, AppView from)
+            : base(context, AppView.Calibrate, from, null)
         {
             this._plotterController = controller;
             this._settings = settings;
@@ -50,6 +48,7 @@ namespace LegoTechnicPlotter.Views.Print
         private void _buttonFixStart_ButtonPressedEvent()
         {
             this._plotterController.ActualPositionReset();
+
         }
 
         public void _buttonFixEnd_ButtonPressedEvent()

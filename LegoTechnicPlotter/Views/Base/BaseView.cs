@@ -18,17 +18,29 @@ namespace LegoTechnicPlotter.Views.Base
         private readonly IApplicationContext _context;
 
         private SquareButton _buttonBack;
+        private string _backButtonText;
+
+        private SquareLabel _label;
+        private string _title;
+
         private ArrayList _controls = new ArrayList();
         private readonly Panel _content = new Panel();
         private readonly bool _withoutBackButton;
+        private AppView _isApplicationView = AppView.NotSet;
+        private AppView _fromApplicationView = AppView.NotSet;
 
-        public BaseView(IApplicationContext context, bool withoutBack = false)
+        public BaseView(IApplicationContext context, AppView isView, AppView fromView, string title, bool withoutBack = false, string backButtonText = "")
         {
+            this._isApplicationView = isView;
+            this._fromApplicationView = fromView;
             this._context = context;
+            this._title = title;
             this._withoutBackButton = withoutBack;
 
             this.InitializeComponent();
         }
+
+        public AppView ApplicationView { get { return this._isApplicationView; } }
 
         public Panel GetPanel() { return this._content; }
 
@@ -38,7 +50,28 @@ namespace LegoTechnicPlotter.Views.Base
         {
             this.SetBackground();
 
-            this._buttonBack = new SquareButton(this, SquareButtonPosition.Line_4, "Back");
+            if (this._title != null || this._title != "")
+            {
+                this._label = new SquareLabel(this, this._title);
+            }
+            
+            this._buttonBack = new SquareButton(this, SquareButtonPosition.Line_4, this.GetTextForBackButton());
+            this._buttonBack.ButtonPressedEvent += _buttonBack_ButtonPressedEvent;
+        }
+
+        private string GetTextForBackButton()
+        {
+            if (this._backButtonText == "" ||  this._backButtonText == null)
+            {
+                return "Back";
+            }
+
+            return this._backButtonText;
+        }
+
+        private void _buttonBack_ButtonPressedEvent()
+        {
+            this.Context.Show(this._fromApplicationView, AppView.Nothing);
         }
 
         protected void SetBackground()

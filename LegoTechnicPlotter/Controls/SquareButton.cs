@@ -106,8 +106,10 @@ namespace LegoTechnicPlotter.Controls
         /// </summary>
         protected override void SetPressEffect()
         {
+            Debug.Print("Set presseffect from override");
             if (this._buttonPressEffect.Visibility == Microsoft.SPOT.Presentation.Visibility.Visible)
             {
+                Debug.Print("is visible");
                 return;
             }
 
@@ -118,6 +120,7 @@ namespace LegoTechnicPlotter.Controls
         protected override void SetPressEffectEnd()
         {
             base.SetPressEffectEnd();
+            Debug.Print("SetPressEffectEnd from override collpsed");
             this._buttonPressEffect.Visibility = Visibility.Collapsed;
         }
 

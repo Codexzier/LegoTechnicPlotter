@@ -30,12 +30,14 @@ namespace LegoTechnicPlotter.Controls
 
         private void SquareButton_TouchUp(object sender, Microsoft.SPOT.Input.TouchEventArgs e)
         {
+            Debug.Print("Button pressed");
             this.SetPressEffect();
-            this.ButtonPressed();
+       
         }
 
         protected virtual void SetPressEffect()
         {
+            Debug.Print("Timer start for effect");
             this._timer.Start();
         }
 
@@ -50,6 +52,8 @@ namespace LegoTechnicPlotter.Controls
 
         protected virtual void SetPressEffectEnd()
         {
+            Debug.Print("SetPressEffectEnd");
+            this.ButtonPressed();
         }
 
         public bool IsSubElement { get { return this._isEffect; } }

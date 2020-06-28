@@ -14,8 +14,8 @@ namespace LegoTechnicPlotter.Views.Print
 
         private SquareButton _buttonRepeat;
 
-        public RunningPrintView(IApplicationContext context, PlotterController controller)
-            : base(context)
+        public RunningPrintView(IApplicationContext context, AppView fromApplicationView, PlotterController controller)
+            : base(context, AppView.RunningPrint, fromApplicationView, "Running print")
         {
             this._controller = controller;
             this._buttonRepeat = new SquareButton(this, SquareButtonPosition.Line_1, "Repeat");

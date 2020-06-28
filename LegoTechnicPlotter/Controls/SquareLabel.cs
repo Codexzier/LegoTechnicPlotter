@@ -13,6 +13,10 @@ namespace LegoTechnicPlotter.Controls
 
         private string _text;
 
+        public SquareLabel(BaseView view, string text)
+            : this(view, text, 10, 10)
+        {
+        }
 
         public SquareLabel(BaseView view, string text, int left, int top)
         {

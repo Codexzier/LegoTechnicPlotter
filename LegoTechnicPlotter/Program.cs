@@ -33,13 +33,13 @@ namespace LegoTechnicPlotter
 
         //private MenuView _menu;
 
-        private CreatePhotoView _createPhoto;
-        private PhotoResultView _photoResult;
+        //private CreatePhotoView _createPhoto;
+        //private PhotoResultView _photoResult;
         private LoadPhotoView _loadPhoto;
         private PreviewPrintView _previewPrint;
 
         private PrintView _print;
-        private CalibrateView _calibrate;
+        //private CalibrateView _calibrate;
         private RunningPrintView _runningPrint;
 
         void ProgramStarted()
@@ -47,10 +47,11 @@ namespace LegoTechnicPlotter
             this._context = new ApplicationContext(
                 this.SdCard,
                 this.Display_T35,
-                this.extender);
+                this.extender,
+                this.Camera);
 
 
-            this._context.Show(AppView.Menu);
+            this._context.Show(AppView.Menu, AppView.NotSet);
 
 
             // this.ShowMenu();

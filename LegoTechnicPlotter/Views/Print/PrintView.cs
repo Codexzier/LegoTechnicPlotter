@@ -14,8 +14,8 @@ namespace LegoTechnicPlotter.Views.Print
         private SquareButton _buttonCalibrate;
         private SquareButton _buttonRunningPrint;
 
-        public PrintView(IApplicationContext context)
-            : base(context)
+        public PrintView(IApplicationContext context, AppView fromApplicationView)
+            : base(context, AppView.Print, fromApplicationView, "Print")
         {
         }
 

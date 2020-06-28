@@ -20,7 +20,6 @@ namespace LegoTechnicPlotter.Views.Menu
     /// </summary>
     public class MenuView : BaseView
     {
-        private SquareLabel _label;
         private SquareButton _buttonCreatePhoto;
         private SquareButton _buttonLoadPhoto;
         private SquareButton _buttonCalibrate;
@@ -31,7 +30,7 @@ namespace LegoTechnicPlotter.Views.Menu
         private InfoBar _infobar;
 
         public MenuView(IApplicationContext context)
-            : base(context)
+            : base(context, AppView.Menu, AppView.NotSet, "Menu")
         {
             this.InitializeComponent();
         }
@@ -40,22 +39,27 @@ namespace LegoTechnicPlotter.Views.Menu
         {
             base.InitializeComponent();
 
-            this._label = new SquareLabel(this, "Menu", 10, 10);
-
             this._buttonCreatePhoto = new SquareButton(this, SquareButtonPosition.Line_2, "Create photo");
-            this._buttonLoadPhoto = new SquareButton(this, SquareButtonPosition.Line_3, "Load photo");
+            this._buttonCreatePhoto.ButtonPressedEvent += _buttonCreatePhoto_ButtonPressedEvent;
+
+            //this._buttonLoadPhoto = new SquareButton(this, SquareButtonPosition.Line_3, "Load photo");
+            
             this._buttonCalibrate = new SquareButton(this, SquareButtonPosition.Line_4, "Calibrate");
             this._buttonCalibrate.ButtonPressedEvent += this._buttonCalibrate_ButtonPressedEvent;
 
-            //this._buttonPreviewPrint = new SquareButton(this, SquareButtonPosition.Line_3, "Preview print");
-            //this._buttonPrint = new SquareButton(this, SquareButtonPosition.Line_4, "Print");
+
 
             this._infobar = new InfoBar(this);
         }
 
+        private void _buttonCreatePhoto_ButtonPressedEvent()
+        {
+            this.Context.Show(AppView.CreatePhoto, this.ApplicationView);
+        }
+
         private void _buttonCalibrate_ButtonPressedEvent()
         {
-            this.Context.Show(AppView.Calibrate);
+            this.Context.Show(AppView.Calibrate, this.ApplicationView);
         }
 
         public SquareButton CreatePhoto { get { return this._buttonCreatePhoto; } }
@@ -97,7 +101,6 @@ namespace LegoTechnicPlotter.Views.Menu
         {
             base.Dispose();
 
-            this._label = null;
             this._buttonLoadPhoto = null;
             this._buttonLoadPhoto = null;
             this._buttonCalibrate = null;

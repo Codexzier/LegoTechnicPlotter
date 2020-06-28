@@ -6,6 +6,17 @@ namespace LegoTechnicPlotter.Views
     public enum AppView
     {
         Menu,
-        Calibrate
+        Calibrate,
+        CreatePhoto,
+        LoadPhoto,
+        NotSet,
+        Main,
+        PhotoResult,
+        PreviewForPrint,
+        Print,
+        RunningPrint,
+        Nothing,
+        Wait,
+        WaitCameraShot
     }
 }
