@@ -20,8 +20,9 @@ namespace LegoTechnicPlotter.Views.Menu
     /// </summary>
     public class MenuView : BaseView
     {
-        private SquareButton _buttonCreatePhoto;
-        private SquareButton _buttonLoadPhoto;
+        //private SquareButton _buttonCreatePhoto;
+        //private SquareButton _buttonLoadPhoto;
+        private SquareButton _buttonLoadPrintForm;
         private SquareButton _buttonCalibrate;
 
         private InfoBar _infobar;
@@ -36,17 +37,25 @@ namespace LegoTechnicPlotter.Views.Menu
         {
             base.InitializeComponent();
 
-            this._buttonCreatePhoto = new SquareButton(this, SquareButtonPosition.Line_2, "Create photo");
-            this._buttonCreatePhoto.ButtonPressedEvent += _buttonCreatePhoto_ButtonPressedEvent;
+            //this._buttonCreatePhoto = new SquareButton(this, SquareButtonPosition.Line_2, "Create photo");
+            //this._buttonCreatePhoto.ButtonPressedEvent += _buttonCreatePhoto_ButtonPressedEvent;
 
             //this._buttonLoadPhoto = new SquareButton(this, SquareButtonPosition.Line_3, "Load photo");
-            
+
+            this._buttonLoadPrintForm = new SquareButton(this, SquareButtonPosition.Line_3, "Load print form");
+            this._buttonLoadPrintForm.ButtonPressedEvent += _buttonLoadPrintForm_ButtonPressedEvent;
+
             this._buttonCalibrate = new SquareButton(this, SquareButtonPosition.Line_4, "Calibrate");
             this._buttonCalibrate.ButtonPressedEvent += this._buttonCalibrate_ButtonPressedEvent;
 
 
 
             this._infobar = new InfoBar(this);
+        }
+
+        public void _buttonLoadPrintForm_ButtonPressedEvent()
+        {
+            this.Context.Show(AppView.LoadPrintForm, this.ApplicationView);
         }
 
         private void _buttonCreatePhoto_ButtonPressedEvent()
@@ -63,8 +72,8 @@ namespace LegoTechnicPlotter.Views.Menu
         {
             base.Dispose();
 
-            this._buttonLoadPhoto = null;
-            this._buttonLoadPhoto = null;
+            //this._buttonLoadPhoto = null;
+            //this._buttonLoadPhoto = null;
             this._buttonCalibrate = null;
             this._infobar = null;
         }

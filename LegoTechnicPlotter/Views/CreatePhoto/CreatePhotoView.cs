@@ -9,7 +9,6 @@ namespace LegoTechnicPlotter.Views.CreatePhoto
 {
     public class CreatePhotoView : BaseView
     {
-        public static Gadgeteer.Picture ActualPicture;
         private Camera _camera;
  
 

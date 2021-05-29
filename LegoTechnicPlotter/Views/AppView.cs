@@ -16,6 +16,7 @@ namespace LegoTechnicPlotter.Views
         Print,
         RunningPrint,
         Wait,
-        WaitCameraShot
+        WaitCameraShot,
+        LoadPrintForm
     }
 }

@@ -9,6 +9,7 @@ using LegoTechnicPlotter.Components.Plotter;
 using LegoTechnicPlotter.Views.CreatePhoto;
 using LegoTechnicPlotter.Views.Wait;
 using LegoTechnicPlotter.Views.PreviewPrint;
+using LegoTechnicPlotter.Views.LoadPrintForm;
 
 namespace LegoTechnicPlotter.Views
 {
@@ -26,10 +27,13 @@ namespace LegoTechnicPlotter.Views
 
         private PreviewPrintView _previewForPrint;
 
+        private LoadPrintFormView _loadPrintForm;
+        private PrintView _print;
+
         private CalibrateView _calibrate;
 
         public ApplicationContext(
-            SDCard sdCard, 
+            SDCard sdCard,
             Display_T35 display,
             Extender extener,
             Camera camera)
@@ -48,14 +52,14 @@ namespace LegoTechnicPlotter.Views
 
             var window = this._display.WPFWindow;
 
-            switch(view)
+            switch (view)
             {
                 case (AppView.Menu):
                     {
-                    this._menu = new MenuView(this);
-                    window.Child = this._menu.GetPanel();
-                    break;
-                }
+                        this._menu = new MenuView(this);
+                        window.Child = this._menu.GetPanel();
+                        break;
+                    }
                 case (AppView.CreatePhoto):
                     {
                         this._createPhoto = new CreatePhotoView(this, from, this._camera);
@@ -74,9 +78,18 @@ namespace LegoTechnicPlotter.Views
                         window.Child = this._previewForPrint.GetPanel();
                         break;
                     }
-                case(AppView.LoadPhoto):{
-                    break;
-                }
+                case (AppView.LoadPrintForm):
+                    {
+                        this._loadPrintForm = new LoadPrintFormView(this, from);
+                        window.Child = this._loadPrintForm.GetPanel();
+                        break;
+                    }
+                case (AppView.Print):
+                    {
+                        this._print = new PrintView(this, from, PlotterController.GetInstance(this._extener, this._sdCard));
+                        window.Child = this._print.GetPanel();
+                        break;
+                    }
                 case (AppView.Calibrate):
                     {
                         this._calibrate = new CalibrateView(this, PlotterController.GetInstance(this._extener, this._sdCard), this._settings, from);

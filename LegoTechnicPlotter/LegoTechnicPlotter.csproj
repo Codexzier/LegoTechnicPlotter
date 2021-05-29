@@ -39,7 +39,15 @@
   <!-- Everything below here is custom to .NET MF / Gadgeteer template-->
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="Components\Logging.cs" />
+    <Compile Include="Components\ImageToGraph\AlternatePoint.cs" />
+    <Compile Include="Components\ImageToGraph\BitmapToGray.cs" />
     <Compile Include="Components\ImageToGraph\DrawPointItem.cs" />
+    <Compile Include="Components\ImageToGraph\ImageToGraphConverter.cs" />
+    <Compile Include="Components\ImageToGraph\ImageToGraphConverterException.cs" />
+    <Compile Include="Components\ImageToGraph\ImageToGraphHelper.cs" />
+    <Compile Include="Components\ImageToGraph\DictionaryDrawPoints.cs" />
+    <Compile Include="Components\ImageToGraph\ImageToGraphState.cs" />
     <Compile Include="Components\Plotter\MovePointItem.cs" />
     <Compile Include="Components\Plotter\MoveState.cs" />
     <Compile Include="Components\Plotter\PlotterController.cs" />
@@ -76,9 +84,11 @@
     <Compile Include="Views\CreatePhoto\CreatePhotoView.cs" />
     <Compile Include="Views\IApplicationContext.cs" />
     <Compile Include="Views\LoadPhoto\LoadPhotoView.cs" />
+    <Compile Include="Views\LoadPrintForm\LoadPrintFormView.cs" />
     <Compile Include="Views\Menu\MenuView.cs" />
     <Compile Include="Views\PreviewPrint\PreviewPrintView.cs" />
     <Compile Include="Views\Print\CalibrateView.cs" />
+    <Compile Include="Views\Print\PrintForm.cs" />
     <Compile Include="Views\Print\PrintView.cs" />
     <Compile Include="Views\Print\RunningPrintView.cs" />
     <Compile Include="Views\Wait\WaitPhotoShotView.cs" />
